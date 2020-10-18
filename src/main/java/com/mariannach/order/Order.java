@@ -1,5 +1,6 @@
 package com.mariannach.order;
 
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -15,13 +16,19 @@ class Order {
 
     private String description;
     private Status status;
+    private String trackingCode;
+    private Date createdDate;
+    private Integer clientId;
 
     Order() {}
 
-    Order(String description, Status status) {
+    Order(String description, Status status, String trackingCode, Date createdDate, Integer clientId) {
 
         this.description = description;
         this.status = status;
+        this.createdDate = createdDate;
+        this.trackingCode = trackingCode;
+        this.clientId = clientId;
     }
 
     public Long getId() {
@@ -48,6 +55,30 @@ class Order {
         this.status = status;
     }
 
+    public String getTrackingCode() {
+        return trackingCode;
+    }
+
+    public void setTrackingCode(String trackingCode) {
+        this.trackingCode = trackingCode;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
+    }
+
     @Override
     public boolean equals(Object o) {
 
@@ -67,6 +98,6 @@ class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "id=" + this.id + ", description='" + this.description + '\'' + ", status=" + this.status + '}';
+        return "Order{" + "id=" + this.id + ", description='" + this.description + '\'' + ", status=" + this.status + ", trackingCode=" + this.trackingCode + ", createdDate" + this.createdDate + '}';
     }
 }

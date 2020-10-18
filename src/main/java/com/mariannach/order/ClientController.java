@@ -33,19 +33,19 @@ class ClientController {
 
     // Aggregate root
 
-    @GetMapping("/employees")
+    @GetMapping("/clients")
     CollectionModel<EntityModel<Client>> all() {
 
-        List<EntityModel<Client>> employees = repository.findAll().stream() //
+        List<EntityModel<Client>> clients = repository.findAll().stream() //
                 .map(assembler::toModel) //
                 .collect(Collectors.toList());
 
-        return CollectionModel.of(employees, linkTo(methodOn(ClientController.class).all()).withSelfRel());
+        return CollectionModel.of(clients, linkTo(methodOn(ClientController.class).all()).withSelfRel());
     }
 
 
-    @PostMapping("/employees")
-    ResponseEntity<?> newEmployee(@RequestBody Client newClient) {
+    @PostMapping("/clients")
+    ResponseEntity<?> newClient(@RequestBody Client newClient) {
 
         EntityModel<Client> entityModel = assembler.toModel(repository.save(newClient));
 
@@ -57,7 +57,7 @@ class ClientController {
     // Single item
 
 
-    @GetMapping("/employees/{id}")
+    @GetMapping("/clients/{id}")
     EntityModel<Client> one(@PathVariable Long id) {
 
         Client client = repository.findById(id) //
@@ -67,14 +67,14 @@ class ClientController {
     }
 
 
-    @PutMapping("/employees/{id}")
-    ResponseEntity<?> replaceEmployee(@RequestBody Client newClient, @PathVariable Long id) {
+    @PutMapping("/clients/{id}")
+    ResponseEntity<?> replaceClient(@RequestBody Client newClient, @PathVariable Long id) {
 
         Client updatedClient = repository.findById(id) //
-                .map(employee -> {
-                    employee.setName(newClient.getName());
-                    employee.setRole(newClient.getRole());
-                    return repository.save(employee);
+                .map(client -> {
+                    client.setName(newClient.getName());
+                    client.setPhoneNo(newClient.getPhoneNo());
+                    return repository.save(client);
                 }) //
                 .orElseGet(() -> {
                     newClient.setId(id);
@@ -88,8 +88,8 @@ class ClientController {
                 .body(entityModel);
     }
 
-    @DeleteMapping("/employees/{id}")
-    ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
+    @DeleteMapping("/clients/{id}")
+    ResponseEntity<?> deleteClient(@PathVariable Long id) {
 
         repository.deleteById(id);
 

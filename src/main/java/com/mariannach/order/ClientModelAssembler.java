@@ -15,6 +15,6 @@ class ClientModelAssembler implements RepresentationModelAssembler<Client, Entit
 
         return EntityModel.of(client, //
                 linkTo(methodOn(ClientController.class).one(client.getId())).withSelfRel(),
-                linkTo(methodOn(ClientController.class).all()).withRel("employees"));
+                linkTo(methodOn(ClientController.class).all()).withRel("clients"));
     }
 }
