@@ -1,0 +1,27 @@
+
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Value</th>
+        <th scope="col">NumberOfOrders</th>
+        <th scope="col">TrackingNo</th>
+        <th scope="col">Created Date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.name }}</td>
+        <td>{{ order.value }}</td>
+        <td>{{ order.numberOfOrders }}</td>
+        <td>{{ order.createdDate }}</td>
+        <td>{{ order.trackingNo }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
